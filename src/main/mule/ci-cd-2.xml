@@ -25,7 +25,7 @@ output application/json
 ---
 {
 	"status": 200,
-	"message":"Hello Huu",
+	"message":"Hello Huu 22/8",
 	"log user": Mule::p('secure::db.user')
 }]]></ee:set-payload>
 			</ee:message>
