@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ea60074e-3d93-4aab-9dd7-44bfa9787508" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<db:config name="User_Database_Config" doc:name="Database Config" doc:id="aadaaa80-477a-4875-9cfc-ccd0ec65df35" >
+		<db:my-sql-connection host="${secure::db.host}" port="${secure::db.port}" user="${secure::db.user}" password="${secure::db.password}" database="${secure::db.database}" />
+	</db:config>
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="fcb774cf-8fd9-46a1-9e94-834956797f27" file="${env}-runtime.properties" key="huutocdai" >
+		<secure-properties:encrypt algorithm="RC2" />
+	</secure-properties:config>
+	<flow name="ci-cd-2Flow" doc:id="0319a960-7912-49a5-b47d-b546b25de0de" >
+		<http:listener doc:name="Listener" doc:id="7b461d79-d540-4b74-a450-ef40af87b027" path="/deploy" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="Transform Message" doc:id="a882369e-4596-426b-9569-9b756858d69e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"status": 200,
+	"message":"Hello Huu",
+	"log user": Mule::p('secure::db.user')
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="56c81eaa-e3e8-4838-a709-68764d937837" message="#[&quot;huutocdai check username&quot; ++  Mule::p('secure::db.user')]"/>
+	</flow>
+</mule>
