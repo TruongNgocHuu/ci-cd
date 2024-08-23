@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-        stage('Build') {
+		stage('Build') {
             steps {
 				bat 'mvn -B -U -e -V clean -DskipTests package'
 				echo 'Success'
@@ -16,5 +16,4 @@ pipeline {
 				bat 'mvn -B -U -e -V clean -DskipTests -Pdev deploy -DmuleDeploy'
             }
         }
-    }
 }
