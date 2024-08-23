@@ -9,9 +9,6 @@
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
 http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
 	<munit:config name="ci-cd-2-test-suite.xml" />
-	<secure-properties:config name="properties" doc:name="Secure Properties Config" doc:id="f69611e4-c01a-406e-bf9b-6ef60626516d" file="${env}-runtime.properties" key="huutocdai" >
-		<secure-properties:encrypt algorithm="RC2" />
-	</secure-properties:config>
 	<munit:test name="ci-cd-2-test-suite-ci-cd-2FlowTest" doc:id="be27d32c-e59e-49ca-93a0-4ea2e6486e3f" description="Test">
 		<munit:execution >
 			<flow-ref doc:name="Flow-ref to ci-cd-2Flow" doc:id="7715a747-e359-4169-ad4e-37559e2e9ea7" name="ci-cd-2Flow"/>
