@@ -1,7 +1,13 @@
 pipeline {
 	agent any
 		stages{
-			stage('Build') {
+			stage('Upload to exchange') {
+				steps {
+					bat 'mvn -B -U -e -V clean -DskipTests deploy'
+					echo 'Success'
+				}
+			}		
+			stage('Build Clean package') {
 				steps {
 					bat 'mvn -B -U -e -V clean -DskipTests package'
 					echo 'Success'
