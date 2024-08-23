@@ -3,7 +3,7 @@ pipeline {
 		stages{
 			stage('Upload to exchange') {
 				steps {
-					bat 'mvn -B -U -e -V clean -DskipTests deploy'
+					bat 'mvn -B -U -e -V clean -DskipTests deploy -X'
 					echo 'Success'
 				}
 			}		
