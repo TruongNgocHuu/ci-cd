@@ -2,8 +2,7 @@ pipeline {
 	agent any
 		stages{
 			stage('Upload to exchange') {
-				steps {
-					echo 'mvn -B -U -e -V clean -DskipTests deploy -s settings.xml'					
+				steps {					
 					bat 'mvn -B -U -e -V clean -DskipTests deploy -s settings.xml -X'
 					echo 'Success'
 				}
@@ -16,7 +15,8 @@ pipeline {
 			}
 			stage('TEST') {
 				steps {
-					bat 'mvn test'
+					echo 'Go to step Test-App-With-Environment'
+					bat 'mvn -Denv=dev test'
 				}
 			}
 			stage('Deployment') {
