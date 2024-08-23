@@ -3,20 +3,20 @@ pipeline {
 		stages{
 			stage('Upload to exchange') {
 				steps {					
-					bat 'mvn -B -U -e -V clean -DskipTests deploy -s settings.xml -X'
+					bat 'mvn -B -U -e -V clean -DskipTests deploy -s settings.xml'
 					echo 'Success'
 				}
 			}		
 			stage('Build Clean package') {
 				steps {
-					bat 'mvn -B -U -e -V clean -DskipTests package -X'
+					bat 'mvn -B -U -e -V clean -DskipTests package'
 					echo 'Success'
 				}
 			}
 			stage('TEST') {
 				steps {
 					echo 'Go to step Test-App-With-Environment'
-					bat 'mvn -Denv=dev test'
+					bat 'mvn -Denv=dev test -X'
 				}
 			}
 			stage('Deployment') {
