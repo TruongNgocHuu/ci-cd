@@ -27,5 +27,5 @@ pipeline {
 // 					bat 'mvn -B -U -e -V clean -DskipTests -Pdev deploy -DmuleDeploy'
 // 				}
 // 			}
-// 		}
+ 		}
 }
