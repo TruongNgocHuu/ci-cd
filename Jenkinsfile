@@ -8,7 +8,7 @@ pipeline {
 				}
 				steps {
 					echo 'USER_NAME %USER_NAME%'					
-					bat 'mvn -B -U -e -V clean -DskipTests -Dusername="%USER_NAME%" -Dpassword="%PASSWORD%" deploy -s settings.xml -X'
+					bat 'mvn -B -U -e -V clean -DskipTests -Dusername="%USER_NAME%" -Dpassword="%PASSWORD%" deploy -s settings.xml'
 				}
 			}		
 			stage('Build Clean package') {
