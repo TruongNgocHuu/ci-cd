@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+		environment {
+			USER_NAME = credentials('USER_NAME')
+			PASSWROD = credentials('PASSWORD')
+		}
 		stages{
 			stage('Upload to exchange') {
 				steps {					
