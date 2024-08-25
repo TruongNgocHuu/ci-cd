@@ -3,7 +3,7 @@ pipeline {
 		stages{
 			stage('Upload to exchange') {
 				steps {					
-					bat 'mvn -B -U -e -V clean -DskipTests deploy -s settings.xml'
+					bat 'mvn -B -U -e -V clean -DskipTests -Dusername='%USER_NAME%' -Dpassword='%PASSWORD%' deploy -s settings.xml'
 					echo 'Success'
 				}
 			}		

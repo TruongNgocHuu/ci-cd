@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
-	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
 		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
-		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
-http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
 	<munit:config name="ci-cd-2-test-suite.xml" />
-	<munit:test name="ci-cd-2-test-suite-ci-cd-2FlowTest" doc:id="be27d32c-e59e-49ca-93a0-4ea2e6486e3f" description="Test">
+	<munit:test name="ci-cd-2-test-suite-ci-cd-2FlowTest" doc:id="49d7a7fd-0ea9-43c0-9212-ba6e3b830d73" description="Test">
 		<munit:execution >
-			<flow-ref doc:name="Flow-ref to ci-cd-2Flow" doc:id="7715a747-e359-4169-ad4e-37559e2e9ea7" name="ci-cd-2Flow"/>
+			<flow-ref doc:name="Flow-ref to ci-cd-2Flow" doc:id="4b7c4496-cafe-4fa6-8fad-cbcea0bc9dac" name="ci-cd-2Flow"/>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert doc:name="Assert expression" doc:id="d87a4960-4b7a-4891-b163-f4cba6aaac8a" >
-				<munit-tools:that ><![CDATA[#[import * from dw::test::Asserts 
- ---
-payload.status must equalTo(200)]]]></munit-tools:that>
-			</munit-tools:assert>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="691f7145-fff3-48f4-b737-1f908605de53" actual="#[payload.status]" expected="#[200 as Number]"/>
 		</munit:validation>
 	</munit:test>
 
