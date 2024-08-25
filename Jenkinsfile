@@ -5,6 +5,10 @@ pipeline {
 		}
 		stages{
 			stage('Upload to exchange') {
+				environment {
+					USER_NAME = credentials('USER_NAME')
+					PASSWORD = credentials('PASSWROD')
+				}
 				steps {
 					echo 'USER_NAME %USER_NAME%'					
 					bat 'mvn -B -U -e -V clean -DskipTests -Dusername=$USER_NAME -Dpassword=$PASSWORD deploy -s settings.xml -X'
