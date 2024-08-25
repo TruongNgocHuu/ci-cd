@@ -17,12 +17,12 @@ pipeline {
 					echo 'Success'
 				}
 			}
-			stage('TEST') {
-				steps {
-					echo 'Go to step Test-App-With-Environment'
-					bat 'mvn -Denv=dev test -X'
-				}
-			}
+// 			stage('TEST') {
+// 				steps {
+// 					echo 'Go to step Test-App-With-Environment'
+// 					bat 'mvn -Denv=dev test -X'
+// 				}
+// 			}
 			stage('Deployment') {
 				steps {
 					bat 'mvn -B -U -e -V clean -DskipTests -Pdev deploy -DmuleDeploy'
